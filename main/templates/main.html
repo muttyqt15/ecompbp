@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karya Qiqin</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .product-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fff;
+        margin-bottom: 20px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .product-card img {
+        max-width: 150px;
+        border-radius: 8px;
+        margin-right: 20px;
+      }
+      .product-card h2 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+      .product-card p {
+        margin: 8px 0;
+        font-size: 1em;
+        color: #333;
+      }
+      .product-card .price {
+        font-weight: bold;
+        color: #2a9d8f;
+      }
+      .product-card .rating {
+        margin-top: 8px;
+        color: #ffb703;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1><strong>Muttaqin Muzakkir - 2306207101</strong></h1>
+      <h2><strong>PBP A</strong></h2>
+      {% for product in products %}
+      <div class="product-card">
+        <img src="{{ product.image }}" alt="{{ product.name }}" />
+        <div>
+          <h2>{{ product.name }}</h2>
+          <p class="price">${{ product.price }}</p>
+          <p>{{ product.description }}</p>
+          <p><strong>Category:</strong> {{ product.category }}</p>
+          <p><strong>Stock:</strong> {{ product.stock }}</p>
+          <p class="rating">
+            <strong>Rating:</strong> {{ product.rating }} stars
+          </p>
+        </div>
+      </div>
+      {% empty %}
+      <p>No products available.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>
