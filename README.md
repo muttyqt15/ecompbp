@@ -115,24 +115,22 @@ Deployment ke PWS dapat dilakukan dengan membuat proyek baru di PWS dan mengikut
 
 ## Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 ![alt text](public/image.png)
+Saat user mengakses website, mereka akan mengirimkan HTTP Request yang akan diproses Django. Pertama-tama, URL client diproses dan dicek kebersediaannya di `urls.py`. Ini karena setiap url di `urls.py` memiliki *view* yang berbeda. `urls.py` mengkonfigurasi tampilan-tampilan yang berbeda untuk setiap *endpoint*. Tampilan tersebut diproses dari file `views.py`, di mana `views.py` juga menggunakan template `HTML` untuk menampilkan web page. Template dapat ditemukan dalam folder `/templates` dan diisi *context* yang diberi tahu di function-function pada `views.py`. 
 
+Singkatnya, template `HTML` dikirim ke `views.py`, `urls.py` meng-*map* ke `views.py`, dan user akan bertemu dengan hasilnya url di `urls.py`.
 ## Jelaskan fungsi git dalam pengembangan perangkat lunak!
 Git adalah sistem kontrol versi yang memungkinkan pengembang untuk melacak perubahan dalam kode sumber, bekerja secara bersamaan dalam proyek, dan mengelola versi berbagai revisi dari kode. Dengan Git, pengembang dapat:
 
-#### Menyimpan Versi
-Menyimpan snapshot dari kode pada berbagai titik waktu.
-#### Kolaborasi
-Bekerja dengan tim tanpa konflik, menggunakan fitur seperti branch dan merge.
-#### Rollback
-Kembali ke versi sebelumnya jika terjadi masalah.
-#### Branching
-Membuat cabang untuk fitur baru tanpa memengaruhi kode utama.
+#### Menyimpan Versi: Menyimpan snapshot dari kode pada berbagai titik waktu.
+#### Kolaborasi: Bekerja dengan tim tanpa konflik, menggunakan fitur seperti branch dan merge.
+#### Rollback: Kembali ke versi sebelumnya jika terjadi masalah.
+#### Branching: Membuat cabang untuk fitur baru tanpa memengaruhi kode utama.
 
 ## Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
 Menurut saya, Django adalah pilihan yang tepat untuk pemula programmer di Fasilkom. Ini karena alasan-alasan berikut:
 
 1. **Penggunaan Python**: Django adalah framework web di `Python`, di mana mahasiswa Fasilkom sudah terbiasa dengan Python dari DDP1. Bahasa lain yang sudah biasa dengan mahasiswa Fasilkom adalah `Java`, namun framework popular seperti `Springboot` di `Java` mungkin tidak se-*beginner-friendly* Django.
- 
+
 1. **Fitur Lengkap dan Terintegrasi**: Django menyediakan banyak fitur bawaan seperti sistem admin, ORM (Object-Relational Mapping), routing URL, dan validasi form. Ini memungkinkan pengembang untuk fokus pada logika bisnis tanpa harus mengkonfigurasi banyak hal dari awal.
 
 2. **Dokumentasi yang Komprehensif**: Django memiliki dokumentasi yang sangat baik dan terperinci, memudahkan pemula untuk memahami konsep-konsep dasar dan mengikuti tutorial.
