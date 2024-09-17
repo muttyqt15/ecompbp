@@ -10,7 +10,9 @@ class Product(models.Model):
     # Atribut Tambahan
     stock = models.PositiveIntegerField(default=0)  # Jumlah stok
     category = models.CharField(max_length=100, blank=True, null=True)  # Kategori item
-    imageSrc = models.CharField(max_length=256)  # Gambar item
+    image = models.CharField(
+        max_length=256, default="https://loremflickr.com/200/200?random=7"
+    )  # Gambar item
     rating = models.PositiveIntegerField(default=0)  # Rating item
 
     def __str__(self):
@@ -19,3 +21,9 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=256)
+    age = models.IntegerField()
+    isHappy = models.BooleanField(default=True)
