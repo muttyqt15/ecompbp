@@ -1,5 +1,5 @@
 ### Muttaqin Muzakkir, 2306207101
-
+### PWS: https://muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id
 # Tugas 3 PBP
 
 ## Mengapa Kita Memerlukan Data Delivery dalam Pengimplementasian Sebuah Platform?
@@ -61,7 +61,7 @@ Penyerang dapat memanfaatkan kelemahan ini dengan mengarahkan pengguna untuk men
    - Menggunakan Postman untuk mengakses endpoint yang menampilkan data dalam format XML dan JSON. Mengambil screenshot dari hasil tersebut untuk dokumentasi di `README.md`.
 
 7. **Penambahan ke GitHub**:
-   - Melakukan `git add`, `git commit`, dan `git push` untuk mendorong perubahan ke repository GitHub dan memastikan semua pekerjaan terdokumentasi dengan baik.
+   - Melakukan `git add`, `git commit`, dan `git push` untuk mendorong perubahan ke repository GitHub dan memastikan semua pekerjaan terdokumentasi dengan baik. **Jangan lupa add ke PWS juga!**
 
 ## ECommerce API
 
