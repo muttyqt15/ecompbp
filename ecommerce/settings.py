@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-j691sk#j6)2ud1wd89)i(+3nz=u&la6-pba^-(6n=32npds1=m"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id', '127.0.0.1', 'localhost']
 
