@@ -1,6 +1,4 @@
 from django.db import models
-
-
 class Product(models.Model):
     # Atribut Wajib
     name = models.CharField(max_length=255)  # Nama item
@@ -21,9 +19,3 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
-
-
-class Person(models.Model):
-    name = models.CharField(max_length=256)
-    age = models.IntegerField()
-    isHappy = models.BooleanField(default=True)
