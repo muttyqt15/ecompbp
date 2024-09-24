@@ -7,12 +7,15 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+import datetime
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 @login_required(login_url="/login/")
 def index(req):
     data = Product.objects.all()
-    return render(req, "main.html", {"products": data})
+    ctx = {"products": data, "user": { "last_login": req.COOKIES.get("last_login") }}
+    return render(req, "main.html", ctx)
 
 
 def register(request):
@@ -35,7 +38,9 @@ def login_user(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("main:index")
+            response = HttpResponseRedirect(reverse("main:index"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
 
     else:
         form = AuthenticationForm(request)
