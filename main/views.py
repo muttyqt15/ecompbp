@@ -11,10 +11,11 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+
 @login_required(login_url="/login/")
 def index(req):
-    data = Product.objects.all()
-    ctx = {"products": data, "user": { "last_login": req.COOKIES.get("last_login") }}
+    data = Product.objects.all().filter(user=req.user)
+    ctx = {"products": data, "user": {"last_login": req.COOKIES.get("last_login")}}
     return render(req, "main.html", ctx)
 
 
@@ -39,7 +40,7 @@ def login_user(request):
             user = form.get_user()
             login(request, user)
             response = HttpResponseRedirect(reverse("main:index"))
-            response.set_cookie('last_login', str(datetime.datetime.now()))
+            response.set_cookie("last_login", str(datetime.datetime.now()))
             return response
 
     else:
@@ -56,7 +57,9 @@ def logout_user(request):
 def create_product(req):
     form = ProductForm(req.POST or None)
     if form.is_valid() and req.method == "POST":
-        form.save()
+        product = form.save(commit=False)
+        product.user = req.user
+        product.save()
         return redirect("main:index")  # Menggunakan nama di urls.py
 
     context = {"form": form}
