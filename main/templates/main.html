@@ -10,69 +10,140 @@
         background-color: #f4f4f4;
         margin: 0;
         padding: 0;
+        color: #333;
       }
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
       }
+      /* User Details Styling */
+      .user-details {
+        text-align: center;
+        margin-bottom: 40px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .user-details h1,
+      .user-details h2 {
+        margin: 0;
+        padding: 0;
+      }
+      .user-details h1 {
+        font-size: 2em;
+        font-weight: bold;
+        color: #2a9d8f;
+      }
+      .user-details h2 {
+        font-size: 1.5em;
+        color: #264653;
+        margin-top: 10px;
+      }
+
+      /* Product Card Styling */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
       .product-card {
         border: 1px solid #ddd;
-        border-radius: 8px;
+        border-radius: 12px;
         background: #fff;
-        margin-bottom: 20px;
         padding: 16px;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
       }
       .product-card img {
         max-width: 150px;
         border-radius: 8px;
-        margin-right: 20px;
+        margin-bottom: 15px;
       }
       .product-card h2 {
-        margin: 0;
-        font-size: 1.5em;
+        margin: 10px 0;
+        font-size: 1.3em;
+        color: #264653;
       }
       .product-card p {
-        margin: 8px 0;
-        font-size: 1em;
-        color: #333;
+        margin: 6px 0;
+        font-size: 0.95em;
+        color: #6d6d6d;
       }
       .product-card .price {
         font-weight: bold;
         color: #2a9d8f;
+        font-size: 1.2em;
       }
       .product-card .rating {
         margin-top: 8px;
         color: #ffb703;
       }
+      .product-card .details {
+        text-align: left;
+        width: 100%;
+      }
+
+      /* Button Styling */
+      .logout-btn {
+        display: block;
+        width: 200px;
+        margin: 30px auto 0;
+        padding: 10px 20px;
+        background-color: #e76f51;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .logout-btn:hover {
+        background-color: #d35400;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1><strong>Muttaqin Muzakkir - 2306207101</strong></h1>
-      <h2><strong>PBP A</strong></h2>
-      {% for product in products %}
-      <div class="product-card">
-        <img src="{{ product.image }}" alt="{{ product.name }}" />
-        <div>
-          <h2>{{ product.name }}</h2>
-          <p class="price">${{ product.price }}</p>
-          <p>{{ product.description }}</p>
-          <p><strong>Category:</strong> {{ product.category }}</p>
-          <p><strong>Stock:</strong> {{ product.stock }}</p>
-          <p class="rating">
-            <strong>Rating:</strong> {{ product.rating }} stars
-          </p>
-        </div>
+      <!-- User Details Section -->
+      <div class="user-details">
+        <h1>Muttaqin Muzakkir</h1>
+        <h2>2306207101 - PBP A</h2>
       </div>
-      {% empty %}
-      <p>No products available.</p>
-      {% endfor %}
+
+      <!-- Products Grid -->
+      <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+          <img src="{{ product.image }}" alt="{{ product.name }}" />
+          <div class="details">
+            <h2>{{ product.name }}</h2>
+            <p class="price">${{ product.price }}</p>
+            <p>{{ product.description }}</p>
+            <p><strong>Category:</strong> {{ product.category }}</p>
+            <p><strong>Stock:</strong> {{ product.stock }}</p>
+            <p class="rating">
+              <strong>Rating:</strong> {{ product.rating }} stars
+            </p>
+          </div>
+        </div>
+        {% empty %}
+        <p>No products available.</p>
+        {% endfor %}
+      </div>
+
+      <!-- Logout Button -->
       <a href="{% url 'main:logout' %}">
-        <button>Logout</button>
+        <button class="logout-btn">Logout</button>
       </a>
     </div>
   </body>
