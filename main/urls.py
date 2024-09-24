@@ -6,7 +6,6 @@ from .views import (
     show_json_by_id,
     show_xml_by_id,
     create_product,
-    show_products,
 )
 
 app_name = "main"
@@ -17,5 +16,4 @@ urlpatterns = [
     path("xml/<str:id>", show_xml_by_id, name="show_xml_by_id"),
     path("json/<str:id>", show_json_by_id, name="show_json_by_id"),
     path("create/", create_product, name="create_product"),
-    path("products/", show_products, name="show_products"),
 ]
