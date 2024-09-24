@@ -71,6 +71,9 @@
       {% empty %}
       <p>No products available.</p>
       {% endfor %}
+      <a href="{% url 'main:logout' %}">
+        <button>Logout</button>
+      </a>
     </div>
   </body>
 </html>

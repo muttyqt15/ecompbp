@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Register</title>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>
+<style>
+  .register {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .register h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .register .form-group {
+    margin-bottom: 15px;
+  }
+
+  .register .btn {
+    width: 100%;
+  }
+
+  .register .invalid-feedback {
+    display: block;
+    color: red;
+  }
+
+  .register a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .register a:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock meta %}
+
+{% block content %}
+<div class="register">
+  <h1>Register</h1>
+
+  <form method="POST" novalidate>
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% for field in form %}
+    <div class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      <div class="{% if field.errors %}is-invalid{% endif %}">
+        {{ field }}
+      </div>
+      {% if field.help_text %}
+      <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+      <div class="invalid-feedback">
+        {{ error }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-primary" type="submit" name="submit">Daftar</button>
+  </form>
+
+  {% if messages %}
+  <div class="alert alert-danger mt-3">
+    <ul class="mb-0">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}
