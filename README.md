@@ -1,5 +1,71 @@
 ### Muttaqin Muzakkir, 2306207101
 ### PWS: https://muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id
+
+# Tugas 4 PBP
+## 1. Mengimplementasikan Fungsi Registrasi, Login, dan Logout
+Untuk memungkinkan pengguna mengakses aplikasi sebelumnya dengan lancar, kita perlu mengimplementasikan tiga fungsi utama:
+- **Registrasi**: Membuat formulir untuk pendaftaran pengguna baru, menyimpan data pengguna di database, dan melakukan validasi.
+- **Login**: Membuat formulir login yang memverifikasi kredensial pengguna dan memulai sesi.
+- **Logout**: Menyediakan mekanisme untuk mengakhiri sesi pengguna dan menghapus informasi autentikasi.
+
+## 2. Membuat Dua Akun Pengguna dengan Dummy Data
+Untuk membuat dua akun pengguna dengan masing-masing tiga dummy data, kita dapat menggunakan metode berikut:
+1. Menggunakan shell Django atau skrip migrasi untuk membuat pengguna baru.
+2. Membuat tiga objek produk palsu untuk setiap akun dengan model `Product` yang telah dibuat sebelumnya.
+
+## 3. Menghubungkan Model Product dengan User
+Model `Product` dapat dihubungkan dengan `User` melalui ForeignKey. Misalnya:
+```python
+from django.db import models
+from django.contrib.auth.models import User
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+```
+Ini akan memungkinkan kita untuk mengaitkan setiap produk dengan pengguna tertentu.
+
+## 4. Menampilkan Detail Informasi Pengguna yang Sedang Logged In
+Untuk menampilkan informasi pengguna yang sedang login, kita bisa menambahkan kode berikut di halaman utama:
+```python
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def home(request):
+    return render(request, 'home.html', {'username': request.user.username})
+```
+Untuk menerapkan cookies seperti `last_login`, kita bisa menambahkan cookie dalam fungsi view:
+```python
+response.set_cookie('last_login', request.user.last_login)
+```
+
+## 5. Pertanyaan di README.md
+
+### 5.1 Apa perbedaan antara HttpResponseRedirect() dan redirect()?
+- `HttpResponseRedirect()` adalah kelas yang digunakan untuk menghasilkan respon HTTP yang mengarahkan ke URL tertentu. Kita perlu menyebutkan URL secara manual.
+- `redirect()` adalah fungsi yang lebih praktis karena secara otomatis menangani resolusi URL dan dapat menerima objek model, nama tampilan, dan lebih banyak argumen.
+
+### 5.2 Jelaskan cara kerja penghubungan model Product dengan User!
+Penghubungan dilakukan melalui penggunaan ForeignKey dalam model `Product`, yang menunjuk ke model `User`. Hal ini memungkinkan setiap produk untuk memiliki pemilik yang ditentukan, sehingga mempermudah pengelolaan produk berdasarkan pengguna.
+
+### 5.3 Apa perbedaan antara authentication dan authorization, dan apa yang dilakukan saat pengguna login?
+- **Authentication** adalah proses verifikasi identitas pengguna (misalnya, memeriksa username dan password).
+- **Authorization** adalah proses penentuan apakah pengguna yang sudah terautentikasi memiliki izin untuk mengakses sumber daya tertentu.
+Saat pengguna login, proses yang terjadi adalah autentikasi untuk memastikan identitas pengguna yang benar.
+
+### 5.4 Bagaimana Django mengingat pengguna yang telah login?
+Django mengingat pengguna yang telah login dengan menyimpan session ID di cookie browser pengguna. Saat pengguna mengunjungi kembali aplikasi, Django memeriksa cookie ini untuk mengidentifikasi sesi aktif.
+
+### 5.5 Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Cookies dapat digunakan untuk menyimpan preferensi pengguna, informasi pelacakan, dan pengaturan situs. Tidak semua cookies aman, terutama yang tidak dienkripsi, karena dapat dieksploitasi untuk pencurian data atau serangan CSRF.
+
+### 5.6 Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step
+1. **Membuat Fungsi Autentikasi**: Membuat formulir dan logika untuk registrasi, login, dan logout.
+2. **Membuat Dummy Data**: Menggunakan shell Django untuk membuat pengguna dan produk palsu.
+3. **Menghubungkan Model**: Mengedit model `Product` untuk menyertakan ForeignKey ke model `User`.
+4. **Menampilkan Informasi Pengguna**: Menggunakan dekorator `login_required` untuk membatasi akses dan menampilkan informasi pengguna di halaman utama.
+
 # Tugas 3 PBP
 
 ## Mengapa Kita Memerlukan Data Delivery dalam Pengimplementasian Sebuah Platform?
