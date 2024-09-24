@@ -15,7 +15,10 @@ from django.urls import reverse
 @login_required(login_url="/login/")
 def index(req):
     data = Product.objects.all().filter(user=req.user)
-    ctx = {"products": data, "user": {"last_login": req.COOKIES.get("last_login")}}
+    ctx = {
+        "products": data,
+        "user": {"name": req.user, "last_login": req.COOKIES.get("last_login")},
+    }
     return render(req, "main.html", ctx)
 
 
