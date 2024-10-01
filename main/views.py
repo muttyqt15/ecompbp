@@ -12,6 +12,25 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 
+def edit_product(req, id):
+    product = Product.objects.get(pk=id)
+    form = ProductForm(req.POST or None, instance=product)
+    if form.is_valid() and req.method == "POST":
+        form.save()
+        messages.success(req, "Product updated successfully!")
+        return redirect("main:index")
+
+    context = {"form": form}
+    return render(req, "edit_product.html", context)
+
+
+def delete_product(req, id):
+    product = Product.objects.get(pk=id)
+    product.delete()
+    messages.success(req, "Product deleted successfully!")
+    return redirect("main:index")
+
+
 @login_required(login_url="/login/")
 def index(req):
     data = Product.objects.all().filter(user=req.user)

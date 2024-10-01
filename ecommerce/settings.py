@@ -23,9 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-j691sk#j6)2ud1wd89)i(+3nz=u&la6-pba^-(6n=32npds1=m"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+PRODUCTION = False
+DEBUG = not PRODUCTION
+DEBUG_PROPAGATE_EXCEPTIONS=True
 
-ALLOWED_HOSTS = ['muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    "muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
@@ -115,9 +121,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = "static/"
-
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

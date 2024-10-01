@@ -9,7 +9,6 @@ class ProductForm(ModelForm):
             "name",
             "price",
             "description",
-            "image",
             "stock",
             "category",
             "rating",
