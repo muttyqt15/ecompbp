@@ -3,6 +3,54 @@
 
 # Tugas 5 PBP
 
+## Implementasi Checklist
+## 1. Fungsi untuk Menghapus dan Mengedit Product
+
+### Konsep yang Diterapkan:
+- **CRUD (Create, Read, Update, Delete)**: Implementasi fungsi untuk menghapus dan mengedit produk merupakan bagian dari operasi dasar dalam aplikasi yang berfokus pada pengelolaan data.
+
+### Langkah-Langkah yang Dilalui:
+1. **Membuat Views**:
+   - Buat view untuk menampilkan form pengeditan produk. View ini akan mengambil data produk dari database dan mempersiapkan form dengan data yang sudah ada.
+   - Buat view terpisah untuk menangani penghapusan produk, yang akan menghapus produk berdasarkan ID.
+
+2. **Memetakan ke URL**:
+   - Definisikan URL untuk mengakses fungsi edit dan hapus produk. Setiap URL akan dihubungkan dengan view yang relevan.
+
+3. **Menangani Data dari Form**:
+   - Pada saat form pengeditan disubmit, ambil data dari form dan update informasi produk di database. Untuk penghapusan, cukup lakukan penghapusan berdasarkan ID yang diberikan.
+
+## 2. Kustomisasi Desain Template HTML
+
+### Konsep yang Diterapkan:
+- **Desain Responsif**: Penting untuk memastikan bahwa antarmuka pengguna dapat menyesuaikan diri dengan berbagai ukuran layar.
+- **Penggunaan CSS Framework**: Memanfaatkan framework CSS seperti Tailwind CSS untuk mempercepat proses styling dan memberikan tampilan yang menarik.
+
+### Langkah-Langkah yang Dilalui:
+1. **Kustomisasi Halaman Login dan Register**:
+   - Rancang ulang halaman login dan register untuk membuatnya lebih menarik dengan mempertimbangkan penggunaan warna, tipografi, dan layout yang nyaman dilihat.
+
+2. **Kustomisasi Halaman Daftar Product**:
+   - Tentukan logika untuk menampilkan pesan yang sesuai ketika tidak ada produk yang terdaftar. Pastikan halaman memberikan pengalaman pengguna yang baik dengan gambar dan teks yang informatif.
+   - Jika ada produk yang terdaftar, gunakan card untuk menampilkan detail produk. Setiap card akan mencakup informasi penting dan tombol untuk mengedit atau menghapus produk.
+
+## 3. Navbar yang Responsif
+
+### Konsep yang Diterapkan:
+- **Navigasi Responsif**: Menerapkan desain yang responsif sehingga pengguna di perangkat mobile dan desktop dapat dengan mudah menavigasi aplikasi.
+- **Penggunaan Flexbox dan Media Queries**: Menggunakan flexbox untuk mengatur elemen dalam navbar secara horizontal dan menggunakan media queries untuk mengubah tampilan navbar berdasarkan ukuran layar.
+
+### Langkah-Langkah yang Dilalui:
+1. **Membuat Struktur Navbar**:
+   - Rancang struktur dasar navbar dengan mempertimbangkan elemen-elemen seperti logo, tautan navigasi, dan tombol untuk membuka menu di perangkat mobile.
+
+2. **Styling Navbar**:
+   - Terapkan gaya CSS untuk memberikan tampilan yang menarik pada navbar. Gunakan flexbox untuk mengatur elemen-elemen dalam navbar agar terlihat rapi dan teratur.
+
+3. **Menambahkan Fungsionalitas Menu Mobile**:
+   - Implementasikan logika JavaScript untuk mengatur interaksi pada navbar mobile. Ketika tombol hamburger diklik, tampilkan atau sembunyikan menu.
+
+## Subquestions
 ## 1. Urutan Prioritas CSS Selector
 
 Ketika ada beberapa CSS selector yang berlaku untuk suatu elemen HTML, urutan prioritas pengambilan CSS selector ditentukan oleh konsep yang disebut *Specificity*. Berikut adalah urutannya dari yang paling tinggi hingga yang terendah:
