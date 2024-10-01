@@ -118,21 +118,6 @@ Contoh implementasi:
 }
 ```
 
-## 5. Implementasi Checklist Secara Step-by-Step
-
-Untuk mengimplementasikan checklist di atas, saya mengikuti langkah-langkah berikut:
-
-1. **Mempelajari CSS Selector**: Saya membaca dokumentasi dan sumber belajar mengenai *specificity* dan bagaimana CSS berfungsi dalam konteks DOM.
-  
-2. **Menerapkan Responsive Design**: Saya mencoba membuat layout sederhana menggunakan media queries untuk menguji bagaimana elemen beradaptasi di berbagai perangkat.
-
-3. **Menguji Margin, Border, dan Padding**: Saya membuat beberapa elemen dengan berbagai kombinasi margin, border, dan padding untuk melihat pengaruhnya terhadap tata letak halaman.
-
-4. **Eksplorasi Flexbox dan Grid**: Saya melakukan eksperimen dengan CSS Flexbox dan Grid Layout dengan berbagai contoh tata letak, hingga memahami kapan menggunakan masing-masing.
-
-5. **Praktik Langsung**: Saya menerapkan semua teori yang saya pelajari ke dalam proyek kecil, menggunakan Tailwind CSS dan memodifikasi CSS tradisional agar lebih memahami konsep-konsep tersebut.
-
-
 # Tugas 4 PBP
 ## 1. Mengimplementasikan Fungsi Registrasi, Login, dan Logout
 Untuk memungkinkan pengguna mengakses aplikasi sebelumnya dengan lancar, kita perlu mengimplementasikan tiga fungsi utama:
