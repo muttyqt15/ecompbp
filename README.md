@@ -1,6 +1,90 @@
 ### Muttaqin Muzakkir, 2306207101
 ### PWS: https://muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id
 
+# Tugas 5 PBP
+
+## 1. Urutan Prioritas CSS Selector
+
+Ketika ada beberapa CSS selector yang berlaku untuk suatu elemen HTML, urutan prioritas pengambilan CSS selector ditentukan oleh konsep yang disebut *Specificity*. Berikut adalah urutannya dari yang paling tinggi hingga yang terendah:
+
+1. **Inline Styles**: Gaya yang ditulis langsung pada atribut `style` dalam elemen HTML, contohnya: `<div style="color: red;">`.
+2. **IDs**: Selector dengan ID, ditandai dengan tanda `#`, contohnya: `#header`.
+3. **Classes, Pseudo-classes, dan Attributes**: Selector yang menggunakan kelas (.), pseudo-kelas (:hover, :focus), dan atribut (div[title]).
+4. **Elements (Tag)**: Selector berdasarkan nama elemen HTML, contohnya: `div`, `p`, `h1`.
+
+Jika terdapat beberapa selector yang memiliki tingkat spesifikasi yang sama, urutan pengambilan akan mengikuti urutan deklarasi dalam CSS, di mana yang terakhir dideklarasikan akan diprioritaskan.
+
+## 2. Pentingnya Responsive Design
+
+Responsive design menjadi konsep penting dalam pengembangan aplikasi web karena:
+
+- **Pengalaman Pengguna**: Dengan adanya responsive design, aplikasi web dapat memberikan pengalaman yang konsisten di berbagai perangkat (desktop, tablet, smartphone).
+- **SEO**: Google lebih menyukai website yang responsif, sehingga dapat meningkatkan peringkat pencarian.
+- **Biaya Pemeliharaan**: Menggunakan responsive design dapat mengurangi kebutuhan untuk membuat beberapa versi situs web untuk perangkat yang berbeda.
+
+### Contoh Aplikasi
+- **Aplikasi yang Sudah Menerapkan Responsive Design**: Website e-commerce seperti Amazon dan Zalando, yang menyesuaikan tata letak dan konten sesuai ukuran layar.
+- **Aplikasi yang Belum Menerapkan Responsive Design**: Beberapa blog lama atau situs web statis yang hanya dirancang untuk desktop, sehingga tampak tidak teratur ketika diakses melalui perangkat mobile.
+
+## 3. Margin, Border, dan Padding
+
+- **Margin**: Ruang di luar elemen yang memisahkannya dari elemen lain. Dapat diatur menggunakan properti `margin`. Contoh: `margin: 10px;`.
+  
+- **Border**: Garis yang mengelilingi elemen, berfungsi sebagai batas. Diatur dengan properti `border`. Contoh: `border: 1px solid black;`.
+  
+- **Padding**: Ruang di dalam elemen, antara konten dan batas elemen. Diatur menggunakan properti `padding`. Contoh: `padding: 10px;`.
+
+### Implementasi
+Untuk mengimplementasikan ketiga hal tersebut, kita bisa menggunakan CSS sebagai berikut:
+
+```css
+.element {
+    margin: 10px;       /* Mengatur jarak luar */
+    border: 1px solid black; /* Mengatur batas */
+    padding: 10px;      /* Mengatur jarak dalam */
+}
+```
+
+## 4. Konsep Flex Box dan Grid Layout
+
+### Flex Box
+Flexbox adalah model layout CSS yang memungkinkan pengaturan elemen dalam satu dimensi (baris atau kolom). Elemen dapat diatur dengan fleksibel untuk mengisi ruang yang tersedia. Kegunaan flexbox antara lain:
+- Mengatur alignment elemen.
+- Mengelola ruang di antara elemen dengan lebih efisien.
+
+### Grid Layout
+Grid Layout adalah sistem layout dua dimensi yang memungkinkan penataan elemen dalam baris dan kolom. Kegunaan grid layout termasuk:
+- Menciptakan tata letak yang lebih kompleks dan responsif.
+- Menyediakan kontrol yang lebih besar terhadap ukuran dan posisi elemen.
+
+Contoh implementasi:
+
+```css
+.container {
+    display: flex; /* untuk flexbox */
+}
+
+.grid-container {
+    display: grid; /* untuk grid layout */
+    grid-template-columns: repeat(3, 1fr);
+}
+```
+
+## 5. Implementasi Checklist Secara Step-by-Step
+
+Untuk mengimplementasikan checklist di atas, saya mengikuti langkah-langkah berikut:
+
+1. **Mempelajari CSS Selector**: Saya membaca dokumentasi dan sumber belajar mengenai *specificity* dan bagaimana CSS berfungsi dalam konteks DOM.
+  
+2. **Menerapkan Responsive Design**: Saya mencoba membuat layout sederhana menggunakan media queries untuk menguji bagaimana elemen beradaptasi di berbagai perangkat.
+
+3. **Menguji Margin, Border, dan Padding**: Saya membuat beberapa elemen dengan berbagai kombinasi margin, border, dan padding untuk melihat pengaruhnya terhadap tata letak halaman.
+
+4. **Eksplorasi Flexbox dan Grid**: Saya melakukan eksperimen dengan CSS Flexbox dan Grid Layout dengan berbagai contoh tata letak, hingga memahami kapan menggunakan masing-masing.
+
+5. **Praktik Langsung**: Saya menerapkan semua teori yang saya pelajari ke dalam proyek kecil, menggunakan Tailwind CSS dan memodifikasi CSS tradisional agar lebih memahami konsep-konsep tersebut.
+
+
 # Tugas 4 PBP
 ## 1. Mengimplementasikan Fungsi Registrasi, Login, dan Logout
 Untuk memungkinkan pengguna mengakses aplikasi sebelumnya dengan lancar, kita perlu mengimplementasikan tiga fungsi utama:
