@@ -1,6 +1,58 @@
 ### Muttaqin Muzakkir, 2306207101
 ### PWS: https://muttaqin-muzakkir-ecommerce.pbp.cs.ui.ac.id
 
+# Tugas 6
+
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+JavaScript adalah bahasa pemrograman yang sangat bermanfaat dalam pengembangan aplikasi web karena:
+- **Interaktivitas**: Dengan JavaScript, kita dapat membuat halaman web yang lebih dinamis dan interaktif. Pengguna dapat berinteraksi langsung dengan elemen di halaman tanpa perlu me-reload halaman.
+- **Pengelolaan Konten Secara Dinamis**: JavaScript memungkinkan kita untuk memanipulasi konten DOM (Document Object Model) secara langsung, seperti menambahkan atau mengubah elemen HTML berdasarkan data atau interaksi pengguna.
+- **Komunikasi Asinkron**: Menggunakan JavaScript, kita dapat berkomunikasi dengan server secara asinkron melalui teknik seperti AJAX, memungkinkan update konten secara real-time tanpa perlu me-refresh halaman.
+  
+Dalam kode yang tadi, JavaScript digunakan untuk **mengambil data produk** dari server secara dinamis, kemudian **memasukkannya ke dalam halaman** tanpa perlu me-reload halaman.
+
+### 2. Jelaskan fungsi dari penggunaan `await` ketika kita menggunakan `fetch()`! Apa yang akan terjadi jika kita tidak menggunakan `await`?
+Fungsi `await` dalam `fetch()` adalah untuk **menunggu hasil dari operasi asinkron**. Dengan `await`, JavaScript akan berhenti sementara pada baris tersebut hingga `fetch()` selesai dan hasilnya dapat diproses. 
+
+Jika kita **tidak menggunakan `await`**, maka operasi `fetch()` akan berjalan di latar belakang, dan JavaScript akan melanjutkan eksekusi kode berikutnya tanpa menunggu hasilnya. Ini dapat menyebabkan masalah ketika kita mencoba menggunakan data dari `fetch()`, karena data mungkin belum tersedia pada saat kode berikutnya dijalankan.
+
+Dalam contoh kode, `await` digunakan saat **mengambil data produk** menggunakan `fetch()`, sehingga JavaScript menunggu hingga data produk siap sebelum memprosesnya dan menampilkannya di halaman.
+
+### 3. Mengapa kita perlu menggunakan decorator `csrf_exempt` pada view yang akan digunakan untuk AJAX POST?
+Decorator `csrf_exempt` digunakan untuk **menonaktifkan mekanisme proteksi CSRF** pada view tertentu yang menangani request AJAX POST. CSRF (Cross-Site Request Forgery) adalah mekanisme keamanan Django yang memastikan bahwa POST request berasal dari sumber yang sah (misalnya, form yang dihasilkan oleh server). 
+
+Namun, saat melakukan **AJAX request** yang tidak selalu melewati form, **token CSRF mungkin tidak selalu tersedia atau tidak dikirimkan dengan benar**, sehingga Django akan menolak request tersebut. Dengan `@csrf_exempt`, kita menonaktifkan pengecekan ini untuk request tertentu.
+
+Meski demikian, hal ini **perlu diimbangi dengan langkah keamanan lain** untuk menghindari serangan CSRF pada endpoint yang lebih sensitif.
+
+### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Pembersihan (sanitasi) data input **tidak boleh hanya dilakukan di frontend** karena:
+- **Frontend bisa dimanipulasi**: Pengguna dapat memanipulasi kode JavaScript atau HTML di browser mereka dan mengirim data yang berbahaya secara langsung ke server.
+- **Keamanan Data**: Backend bertanggung jawab penuh atas validasi dan sanitasi data sebelum diproses lebih lanjut atau disimpan di database, untuk mencegah serangan seperti **SQL Injection** atau **Cross-Site Scripting (XSS)**.
+- **Menghindari Celah Keamanan**: Jika hanya frontend yang memproses sanitasi, maka server bisa menjadi rentan terhadap serangan jika seseorang mencoba menghindari proteksi frontend.
+
+Dalam proyek ini, pembersihan data dilakukan di **backend menggunakan sanitasi DOMPurify** untuk melindungi server dari data berbahaya yang mungkin disisipkan oleh pengguna.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+Berikut adalah langkah-langkah implementasi berdasarkan checklist:
+
+1. **Mengambil Data Produk dengan AJAX GET**:
+   - Saya menggunakan `fetch()` untuk mengirim request GET ke endpoint `/ajax-get-json/` untuk mendapatkan data produk dalam format JSON.
+   - Setelah data diterima, saya menggunakan `DOMPurify.sanitize()` untuk memastikan bahwa HTML yang saya render ke halaman sudah aman dari XSS.
+   - Produk ditampilkan dalam bentuk card yang sudah diformat menggunakan TailwindCSS.
+
+2. **Menggunakan `await` pada Fetch untuk Menunggu Hasil**:
+   - Saya memastikan untuk menggunakan `await` pada `fetch()` agar JavaScript menunggu sampai data produk berhasil diterima sebelum melanjutkan ke proses manipulasi DOM.
+
+3. **Menambahkan CSRF Exempt untuk AJAX POST**:
+   - Pada view Django yang menangani request AJAX POST, saya menggunakan decorator `@csrf_exempt` untuk menonaktifkan proteksi CSRF pada view tersebut agar request AJAX bisa berhasil tanpa error.
+
+4. **Sanitasi Input Pengguna di Backend**:
+   - Meskipun saya melakukan beberapa validasi di frontend, saya tetap melakukan sanitasi input pengguna di backend untuk memastikan bahwa data yang dikirimkan aman sebelum diproses lebih lanjut.
+
+Langkah-langkah ini diimplementasikan secara berurutan sesuai kebutuhan proyek, dengan memastikan bahwa **setiap tahap** sudah diamankan baik di frontend maupun backend.
+
+
 # Tugas 5 PBP
 
 ## Implementasi Checklist

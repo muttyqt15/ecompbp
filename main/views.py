@@ -10,6 +10,52 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.html import strip_tags
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+
+
+@csrf_exempt
+@require_POST
+@login_required
+def create_ajax(request):
+    name = strip_tags(request.POST.get("name"))  # strip HTML tags!
+    price = strip_tags(request.POST.get("price"))  # strip HTML tags!
+    description = strip_tags(request.POST.get("description"))
+    category = strip_tags(request.POST.get("category"))
+    stock = strip_tags(request.POST.get("stock"))
+    rating = strip_tags(request.POST.get("rating"))
+    user = request.user
+
+    product = Product(
+        name=name,
+        price=price,
+        description=description,
+        category=category,
+        stock=stock,
+        rating=rating,
+        user=user,
+    )
+    product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+
+
+@login_required
+def ajax_get_json(request):
+    print(request)
+    data = Product.objects.all().filter(user=request.user)
+    return HttpResponse(
+        serializers.serialize("json", data), content_type="application/json"
+    )
+
+
+@login_required
+def ajax_get_xml(request):
+    data = Product.objects.all().filter(user=request.user)
+    return HttpResponse(
+        serializers.serialize("xml", data), content_type="application/xml"
+    )
 
 
 def edit_product(req, id):
@@ -33,9 +79,7 @@ def delete_product(req, id):
 
 @login_required(login_url="/login/")
 def index(req):
-    data = Product.objects.all().filter(user=req.user)
     ctx = {
-        "products": data,
         "user": {"name": req.user, "last_login": req.COOKIES.get("last_login")},
     }
     return render(req, "main.html", ctx)
